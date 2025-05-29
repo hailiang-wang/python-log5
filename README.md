@@ -12,6 +12,9 @@ import log5
 logger = log5.get_logger(log5.LN(__name__), output_mode=3)
 logger.debug('bar')
 logger.info('foo')
+
+log5.set_log_level(log5.ERROR)
+logger.info('foo2')
 ```
 
 # License
