@@ -41,8 +41,8 @@ ENV = env3.read_env()
 '''
 日志输出
 '''
-OUTPUT_FILE = 1
-OUTPUT_STDOUT = 2
+OUTPUT_STDOUT = 1
+OUTPUT_FILE = 2
 OUTPUT_BOTH = 3
 
 '''
@@ -86,16 +86,16 @@ def set_log_level(level = "DEBUG"):
     fh.setLevel(level)
     ch.setLevel(level)
 
-def get_logger(logger_name, output_mode = 3):
+def get_logger(logger_name, output_mode = OUTPUT_STDOUT):
     logger = logging.getLogger(logger_name)
 
-    if output_mode == 1:
-        logger.addHandler(fh)
-
-    if output_mode == 2:
+    if output_mode == OUTPUT_STDOUT:
         logger.addHandler(ch)
 
-    if output_mode == 3:
+    if output_mode == OUTPUT_FILE:
+        logger.addHandler(fh)
+
+    if output_mode == OUTPUT_BOTH:
         logger.addHandler(fh)
         logger.addHandler(ch)
 
@@ -121,6 +121,6 @@ def LN(x):
     return x.split(".")[-1]
 
 if __name__ == "__main__":
-    logger = get_logger(LN(__name__), output_mode=3)
+    logger = get_logger(LN(__name__), output_mode=OUTPUT_BOTH)
     logger.debug('bar')
     logger.info('foo')

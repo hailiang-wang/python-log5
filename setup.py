@@ -29,7 +29,7 @@ output_mode:
 
 setup(
     name='log5',
-    version='0.0.1',
+    version='0.0.2',
     description='Output logs',
     long_description=LONGDOC,
     author='Hai Liang Wang',

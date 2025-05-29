@@ -9,7 +9,7 @@ Usage:
 
 ```
 import log5
-logger = log5.get_logger(log5.LN(__name__), output_mode=3)
+logger = log5.get_logger(log5.LN(__name__), output_mode=log5.OUTPUT_STDOUT)
 logger.debug('bar')
 logger.info('foo')
 
