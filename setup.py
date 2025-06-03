@@ -4,32 +4,15 @@ LONGDOC = """
 log5
 =====================
 
-Output logs
+Output logs, documentation -
 
 https://github.com/hailiang-wang/python-log5
-
-Usage::
-
-    import log5
-
-    logger = log5.get_logger(log5.LN(__name__), output_mode=3)
-    logger.debug('bar')
-    logger.info('foo')
-
-
-output_mode:
-
-* 1: append to log file
-
-* 2: print to stdout
-
-* 3: both file and stdout
 
 """
 
 setup(
     name='log5',
-    version='0.0.2',
+    version='0.0.3',
     description='Output logs',
     long_description=LONGDOC,
     author='Hai Liang Wang',

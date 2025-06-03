@@ -66,7 +66,7 @@ log_file = os.path.join(os.getcwd(), 'default.log')
 
 LOG_LEVEL= "INFO" if not "LOG_LEVEL" in ENV else ENV["LOG_LEVEL"]
 LOG_FILE= log_file if not "LOG_FILE" in ENV else ENV["LOG_FILE"]
-print("[log.py] log settings LOG_FILE %s, LOG_LEVEL %s" % (LOG_FILE, LOG_LEVEL))
+print("[log5] logger settings LOG_FILE %s, LOG_LEVEL %s >> usage checkout https://github.com/hailiang-wang/python-log5" % (LOG_FILE, LOG_LEVEL))
 
 # log would print twice with logging.basicConfig
 # logging.basicConfig(level=LOG_LEVEL)
@@ -80,7 +80,6 @@ fh.setLevel(LOG_LEVEL)
 ch = logging.StreamHandler()
 ch.setFormatter(formatter)
 ch.setLevel(LOG_LEVEL)
-
 
 def set_log_level(level = "DEBUG"):
     fh.setLevel(level)

@@ -17,5 +17,20 @@ log5.set_log_level(log5.ERROR)
 logger.info('foo2')
 ```
 
+# Config
+
+## output_mode
+
+output_mode = `log5.OUTPUT_STDOUT(default) | log5.OUTPUT_FILE | log5.OUTPUT_BOTH`
+
+## Environment Variables
+
+LOG_LEVEL=`CRITICAL|ERROR|WARNING|INFO|DEBUG`, default is INFO
+LOG_FILE=`A FILE PATH TO WRITE LOG`, default is `os.path.join(os.getcwd(), 'default.log')`
+
+# Package deps
+
+Get details in [setup](https://github.com/hailiang-wang/python-log5/blob/master/setup.py).
+
 # License
 [LICENSE](./LICENSE)
