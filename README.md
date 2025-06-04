@@ -26,6 +26,7 @@ output_mode = `log5.OUTPUT_STDOUT(default) | log5.OUTPUT_FILE | log5.OUTPUT_BOTH
 ## Environment Variables
 
 LOG_LEVEL=`CRITICAL|ERROR|WARNING|INFO|DEBUG`, default is INFO
+
 LOG_FILE=`A FILE PATH TO WRITE LOG`, default is `os.path.join(os.getcwd(), 'default.log')`
 
 # Package deps
