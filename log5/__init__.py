@@ -27,6 +27,7 @@ import sys
 import logging
 import json
 import env3
+import atexit
 
 curdir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(curdir)
@@ -60,12 +61,12 @@ NOTSET = 0
 '''
 日志格式
 '''
-formatter = logging.Formatter(
+LOG_FORMATTER = logging.Formatter(
     '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-log_file = os.path.join(os.getcwd(), 'default.log')
 
-LOG_LEVEL= "INFO" if not "LOG_LEVEL" in ENV else ENV["LOG_LEVEL"]
-LOG_FILE= log_file if not "LOG_FILE" in ENV else ENV["LOG_FILE"]
+LOG_LEVEL= ENV.get("LOG_LEVEL", "INFO")
+LOG_FILE= ENV.get("LOG_FILE", None)
+
 print("[log5] logger settings LOG_FILE %s, LOG_LEVEL %s >> usage checkout https://github.com/hailiang-wang/python-log5" % (LOG_FILE, LOG_LEVEL))
 
 # log would print twice with logging.basicConfig
@@ -74,12 +75,31 @@ print("[log5] logger settings LOG_FILE %s, LOG_LEVEL %s >> usage checkout https:
 '''
 Handlers
 '''
-fh = logging.FileHandler(log_file)
-fh.setFormatter(formatter)
-fh.setLevel(LOG_LEVEL)
+fh = None
 ch = logging.StreamHandler()
-ch.setFormatter(formatter)
+ch.setFormatter(LOG_FORMATTER)
 ch.setLevel(LOG_LEVEL)
+
+# handle exit
+def exit_handler():
+    global fh
+    if fh and LOG_FILE:
+        print("\n[log5] LOG FILE path %s" % LOG_FILE)
+        print("[log5] exit gracefully ...")
+
+atexit.register(exit_handler)
+
+
+def init_fh_global():
+    global fh
+    if LOG_FILE is None:
+        print("[log5] WARN: Environment varibale LOG_FILE is empty, can not init log5 normally for file logger")
+        return
+    
+    if fh == None:
+        fh = logging.FileHandler(LOG_FILE)
+        fh.setFormatter(LOG_FORMATTER)
+        fh.setLevel(LOG_LEVEL)
 
 def set_log_level(level = "DEBUG"):
     fh.setLevel(level)
@@ -87,16 +107,21 @@ def set_log_level(level = "DEBUG"):
 
 def get_logger(logger_name, output_mode = OUTPUT_STDOUT):
     logger = logging.getLogger(logger_name)
+    global fh
+    global ch
 
     if output_mode == OUTPUT_STDOUT:
         logger.addHandler(ch)
 
     if output_mode == OUTPUT_FILE:
-        logger.addHandler(fh)
+        init_fh_global()
+        if fh: logger.addHandler(fh)
 
     if output_mode == OUTPUT_BOTH:
-        logger.addHandler(fh)
         logger.addHandler(ch)
+
+        init_fh_global()
+        if fh: logger.addHandler(fh)
 
     logger.setLevel(DEBUG)
 
@@ -118,6 +143,14 @@ def LN(x):
     LN(__name__)
     """
     return x.split(".")[-1]
+
+def load_env(dotenv_file=None):
+    """
+    Read latest env, checkout details
+    https://github.com/hailiang-wang/python-env3
+    """
+    return env3.load_env(dotenv_file=dotenv_file)
+
 
 if __name__ == "__main__":
     logger = get_logger(LN(__name__), output_mode=OUTPUT_BOTH)

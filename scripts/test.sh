@@ -18,5 +18,7 @@ export DATE_WITH_TIME=`date "+%Y%m%d-%H%M%S"` #add %3N as we want millisecond to
 [ -z "${BASH_SOURCE[0]}" -o "${BASH_SOURCE[0]}" = "$0" ] || return
 
 export LOG_LEVEL=DEBUG
+export LOG_FILE=$baseDir/../default.log
+
 cd $baseDir/..
 python log5/__init__.py
