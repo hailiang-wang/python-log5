@@ -8,6 +8,9 @@ pip install -U log5
 Usage:
 
 ```
+import env3
+ENV = env3.load_env(os.path.join(os.getcwd(), ".env")) # set LOG_LEVEL and LOG_FILE in .env
+
 import log5
 logger = log5.get_logger(log5.LN(__name__), output_mode=log5.OUTPUT_STDOUT)
 logger.debug('bar')

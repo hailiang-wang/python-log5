@@ -12,7 +12,7 @@ https://github.com/hailiang-wang/python-log5
 
 setup(
     name='log5',
-    version='0.0.6',
+    version='0.0.7',
     description='Output logs',
     long_description=LONGDOC,
     author='Hai Liang Wang',
@@ -30,9 +30,7 @@ setup(
     ],
     keywords='logging',
     packages=find_packages(),
-    install_requires=[
-        'env3>=0.0.5'
-    ],
+    install_requires=[],
     package_data={
         'log5': [
             'LICENSE']})

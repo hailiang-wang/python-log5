@@ -5,5 +5,4 @@ log5/__init__.py
 log5.egg-info/PKG-INFO
 log5.egg-info/SOURCES.txt
 log5.egg-info/dependency_links.txt
-log5.egg-info/requires.txt
 log5.egg-info/top_level.txt

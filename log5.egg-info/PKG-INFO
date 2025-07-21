@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: log5
-Version: 0.0.6
+Version: 0.0.7
 Summary: Output logs
 Home-page: https://github.com/hailiang-wang/python-log5
 Author: Hai Liang Wang
@@ -15,7 +15,6 @@ Classifier: Programming Language :: Python
 Classifier: Programming Language :: Python :: 3
 Classifier: Programming Language :: Python :: 3.11
 License-File: LICENSE
-Requires-Dist: env3>=0.0.5
 Dynamic: author
 Dynamic: author-email
 Dynamic: classifier
@@ -24,7 +23,6 @@ Dynamic: home-page
 Dynamic: keywords
 Dynamic: license
 Dynamic: license-file
-Dynamic: requires-dist
 Dynamic: summary
 
 

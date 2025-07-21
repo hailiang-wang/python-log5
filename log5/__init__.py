@@ -26,7 +26,6 @@ import os
 import sys
 import logging
 import json
-import env3
 import atexit
 
 curdir = os.path.dirname(os.path.abspath(__file__))
@@ -37,7 +36,7 @@ if sys.version_info[0] < 3:
     sys.setdefaultencoding("utf-8")
     # raise "Must be using Python 3"
 
-ENV = env3.read_env()
+ENV = os.environ.copy()
 
 '''
 日志输出
@@ -143,14 +142,6 @@ def LN(x):
     LN(__name__)
     """
     return x.split(".")[-1]
-
-def load_env(dotenv_file=None):
-    """
-    Read latest env, checkout details
-    https://github.com/hailiang-wang/python-env3
-    """
-    return env3.load_env(dotenv_file=dotenv_file)
-
 
 if __name__ == "__main__":
     logger = get_logger(LN(__name__), output_mode=OUTPUT_BOTH)
