@@ -12,7 +12,7 @@ https://github.com/hailiang-wang/python-log5
 
 setup(
     name='log5',
-    version='0.0.7',
+    version='0.0.9',
     description='Output logs',
     long_description=LONGDOC,
     author='Hai Liang Wang',

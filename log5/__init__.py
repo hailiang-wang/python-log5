@@ -106,6 +106,15 @@ def set_log_level(level = "DEBUG"):
 
 def get_logger(logger_name, output_mode = OUTPUT_STDOUT):
     logger = logging.getLogger(logger_name)
+    
+    # https://medium.com/neural-engineer/python-logging-propagation-and-disabling-noisy-logs-6560b2119865
+    # Remove all default handlers
+    for handler in logger.handlers[:]:
+        logger.removeHandler(handler)
+
+    # # Reset logger hierarchy - this clears the internal dict of loggers
+    # logging.Logger.manager.loggerDict.clear()
+
     global fh
     global ch
 
@@ -123,6 +132,7 @@ def get_logger(logger_name, output_mode = OUTPUT_STDOUT):
         if fh: logger.addHandler(fh)
 
     logger.setLevel(DEBUG)
+    logger.propagate=False # https://signoz.io/guides/log-messages-appearing-twice-with-python-logging/
 
     return logger
 
