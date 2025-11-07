@@ -66,6 +66,9 @@ LOG_FORMATTER = logging.Formatter(
 LOG_LEVEL= ENV.get("LOG_LEVEL", "INFO")
 LOG_FILE= ENV.get("LOG_FILE", None)
 
+if isinstance(LOG_LEVEL, str) and LOG_LEVEL.lower() == "warn":
+    LOG_LEVEL = "WARNING"
+
 print("[log5] logger settings LOG_FILE %s, LOG_LEVEL %s >> usage checkout https://github.com/hailiang-wang/python-log5" % (LOG_FILE, LOG_LEVEL))
 
 # log would print twice with logging.basicConfig
